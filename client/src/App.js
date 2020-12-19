@@ -1,57 +1,26 @@
 import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
 import './App.css';
+import { Route, Switch } from 'react-router-dom';
 
-function App() {
+//import components
+import Navbar from './components/Navbar';
+import Home from './components/Home';
+import NotFoundPage from './components/errors/NotFoundPage';
+
+import history from './history';
+
+import { ConnectedRouter } from 'connected-react-router';
+
+const App = ()=> {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
+    <ConnectedRouter history={history}>
+        <Navbar />
+        <Switch>
+          <Route path="/" component={Home} strict={true} exact={true} key="home"/>
+            {/**here import routes */}
+          <Route component={NotFoundPage} key="notfound" />
+        </Switch>
+    </ConnectedRouter>
   );
 }
 

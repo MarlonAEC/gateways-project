@@ -3,19 +3,8 @@
   "version": "1.0.0",
   "description": "A simple REST API for gateways management",
   "main": "index.js",
-  "dependencies": {
-    "body-parser": "^1.19.0",
-    "cors": "^2.8.5",
-    "mongoose": "^5.11.8",
-    "nodemon": "^2.0.6"
-  },
-  "devDependencies": {
-    "chai": "^4.2.0",
-    "chai-http": "^4.3.0",
-    "fakingoose": "^1.5.1",
-    "node-mongodb-fixtures": "^3.2.8",
-    "testcontainers": "^6.4.0"
-  },
+  "dependencies": {},
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
