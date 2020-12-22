@@ -88,8 +88,8 @@ app.use(function(err, req, res, next) {
   res.send({error: err.name, description: err.message});
 });
 
-app.listen(config.PORT, () => {
-  console.log(`App listening on port ${config.PORT}`);
-});
+// app.listen(config.PORT, () => {
+//   console.log(`App listening on port ${config.PORT}`);
+// });
 
 module.exports = app;

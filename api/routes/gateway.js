@@ -182,7 +182,7 @@ router.post('/gateways', [
         arrayOfPeriferalDevices.push(newPeripheral._id);
         newPeripheral.save(function(err){
             if(err){
-                res.status(422).json(err);
+                next(err);
             }
         })
     });
@@ -192,11 +192,7 @@ router.post('/gateways', [
             for(var i = 0;i < arrayOfPeriferalDevices.length;i++){
                 await Peripheral.findOneAndRemove({_id: arrayOfPeriferalDevices[i]})
             }
-            if(err.name === 'ValidationError'){
-                res.status(422).json(err);
-            }else{
-                res.status(500).json(err);
-            }
+            next(err);
         }
         res.status(200).json(newGateway);        
     })
