@@ -7,7 +7,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
 const swaggerUi = require('swagger-ui-express');
-const swaggerDocument = require('./swagger.json');
+const options = require('./swagger');
 const bodyParser = require('body-parser');
 
 
@@ -21,32 +21,6 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 var indexRouter = require('./routes/index');
 var gatewaysRouter = require('./routes/gateway');
 var peripheralRouter = require('./routes/peripheral');
-
-const options = {
-  definition: {
-    openapi: "3.0.0",
-    info: {
-      title: "Nodejs + MongoDB Gateway Management API with Swagger",
-      version: "1.0.0",
-      description:
-        "This is a simple CRUD API application made with Express and documented with Swagger",
-      license: {
-        name: "ISC",
-      },
-      contact: {
-        name: "Marlon Alejandro Espinosa Castañeiras",
-        url: "https://github/MAEC",
-        email: "marlonespinosa83@gmail.com",
-      },
-    },
-    servers: [
-      {
-        url: "http://localhost:9000",
-      },
-    ],
-  },
-  apis: ["./routes/gateway.js", "./routes/peripheral.js"],
-}
 
 const specs = swaggerJsdoc(options);
 
