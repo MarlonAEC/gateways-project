@@ -80,7 +80,7 @@ app.use(function(err, req, res, next) {
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
-  console.log("THE ERROR:\n",err);
+  //console.log("THE ERROR:\n",err);
   res.status(err.status);
   if(err.name === 'ValidationError'){
     res.status(422);

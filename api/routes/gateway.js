@@ -163,7 +163,7 @@ router.post('/gateways', [
     if(req.body.perDevices.length > 10){
         res.status(422).send({
             name: "ValidationError",
-            message: "Only 10 peripheral devices per gateway are allowed!"
+            description: "Only 10 peripheral devices per gateway are allowed!"
         });
     }
     newGateway = new Gateway({
@@ -194,7 +194,7 @@ router.post('/gateways', [
             }
             next(err);
         }
-        res.status(200).json(newGateway);        
+        res.status(201).json({message: "Gateway successfully added!", gateway: newGateway});        
     })
 });
 
