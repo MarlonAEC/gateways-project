@@ -1,0 +1,23 @@
+.class-navbar-links a:hover,
+.class-navbar-links a:focus {
+	border-color: #fff;
+    color: #fff;
+    text-decoration: none;
+}
+
+.class-navbar-links a {
+	display: inline-block;
+	margin: 0.5em;
+	padding: 0.7em 1.1em;
+	outline: none;
+	color: rgba(255,255,255,0.7);
+	text-decoration: none;
+	font-weight: 700;
+	opacity: 1;
+	-webkit-transition: all 0.2s;
+	transition: all 0.2s;
+}
+
+.class-navbar{
+    background-color: #026D44;
+}

@@ -1,0 +1,99 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
+@font-face {
+	font-weight: normal;
+	font-style: normal;
+	font-family: 'codropsicons';
+	src:url('../assets/fonts/codropsicons/codropsicons.eot');
+	src:url('../assets/fonts/codropsicons/codropsicons.eot?#iefix') format('embedded-opentype'),
+		url('../assets/fonts/codropsicons/codropsicons.woff') format('woff'),
+		url('../assets/fonts/codropsicons/codropsicons.ttf') format('truetype'),
+		url('../assets/fonts/codropsicons/codropsicons.svg#codropsicons') format('svg');
+}
+body {
+    color: #fff !important;
+    background-color: #04a466 !important;
+	font-family: 'Lato', Arial, sans-serif;
+}
+
+.class-header {
+	position: relative;
+	margin: 0 auto;
+	max-width: 60%;
+	text-align: center;
+}
+
+.class-header a {
+	outline: none;
+	color: #fff;
+	text-decoration: none;
+	opacity: 0.7;
+}
+
+.class-header h1 {
+	margin: 0;
+	font-weight: 300;
+	font-size: 2.625em;
+	line-height: 1.3;
+}
+
+.class-header h1 span {
+	display: block;
+	padding: 0.4em 1em 1em;
+	font-size: 60%;
+}
+
+.class-header a:hover,
+.class-header a:focus {
+    opacity: 1;
+    color: #fff;
+    text-decoration: none;
+}
+
+h1 {
+	margin: 0;
+	font-weight: 300;
+	font-size: 2.625em;
+	line-height: 1.3;
+}
+h2 {
+	margin: 0;
+	font-weight: 200;
+	font-size: 13.625em;
+	line-height: 1.3;
+}
+
+.class-header h1 span {
+	display: block;
+	padding: 0.4em 1em 1em;
+	font-size: 60%;
+}
+
+.class-links {
+	margin: 0;
+}
+
+.class-links a {
+	display: inline-block;
+	margin: 0 0.6em;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-size: 75%;
+}
+
+@media screen and (max-width: 30em) {
+	body {
+		font-size: 90%;
+	}
+}
+
+@media screen and (max-height: 29em) {
+	.container {
+		height: auto;
+	}
+	.class-header {
+		position: relative;
+		margin: 0 auto;
+		height: auto;
+		max-width: 100%;
+	}
+}

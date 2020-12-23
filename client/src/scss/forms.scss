@@ -1,0 +1,29 @@
+.peripherals-form, .gateway-form{
+    display: flex;
+    flex-flow: row wrap;
+    padding: 10px;
+}
+
+.peripheral-container{
+    background-color: white;
+    padding: 5px;
+}
+
+.button-add{
+    align-self: start;
+}
+
+.text-form{
+    color:black;
+    padding: 5px;
+}
+
+.input-error{
+    border-color: red !important;
+}
+
+.button-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

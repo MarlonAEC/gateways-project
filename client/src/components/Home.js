@@ -1,15 +1,13 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import Navbar from './Navbar'
 
 export default class Home extends Component {
-    static propTypes = {
-        prop: PropTypes
-    }
-
     render() {
         return (
-            <div>
-                
+            <div className="container">
+                <header className='class-header'>
+                    <h1><span>Gateway management system inspired by <a href="/#">MusalaSoft</a></span></h1>
+                </header>
             </div>
         )
     }

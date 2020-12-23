@@ -1,16 +1,13 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-
+import { Link } from 'react-router-dom'
 export default class Navbar extends Component {
-    static propTypes = {
-        prop: PropTypes
-    }
-
     render() {
         return (
-            <div>
-                
-            </div>
+            <nav className="class-navbar-links class-navbar">
+                <Link to="/">Home</Link>
+                <Link to="/gateways/list">Gateways</Link>
+                <Link to="/peripheral-devices/list">Peripheral Devices</Link>
+            </nav>
         )
     }
 }

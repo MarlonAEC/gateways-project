@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { list, reset } from '../../actions/gateways/list';
+import { list, reset } from '../../actions/peripheral/list';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -15,14 +15,6 @@ class List extends Component {
     componentDidMount(){
         this.props.list();
     }
-
-    // UNSAFE_componentWillReceiveProps(nextProps) {
-    //     console.log(nextProps);
-    //     // if (this.props.match.params.page !== nextProps.match.params.page)
-    //     //   nextProps.list();
-    //   }
-    
-    
 
     render() {
         return (
@@ -49,10 +41,13 @@ class List extends Component {
                     <table>
                         <thead className="table-head">
                             <tr className="container table-head-row">
-                                <th className="column-gateway">Serial Number</th>
-                                <th className="column-gateway">Name</th>
-                                <th className="column-gateway">IP Address</th>
-                                <th className="column-gateway">Peripheral Devices</th>
+                                <th className="column-gateway">UID</th>
+                                <th className="column-gateway">Vendor</th>
+                                <th className="column-gateway">Date</th>
+                                <th className="column-gateway">Status</th>
+                                <th className="column-gateway">
+                                    Gateway
+                                </th>
                                 <th className="column-gateway">Actions</th>
                             </tr>
                         </thead>
@@ -62,21 +57,17 @@ class List extends Component {
                                     <tr key={item['_id']} className="column-gateway">
                                         <td>
                                             <Link to={`show/${encodeURIComponent(item['_id'])}`}>
-                                                {item['serialNumber']}
+                                                {item['uid']}
                                             </Link>
                                         </td>
-                                        <td>{item['name']}</td>
-                                        <td>{item['ipAddress']}</td>
-                                        <td>{item['perDevices'].map(item2=>{
-                                            return (
-                                                <span key={item2['_id']}>
-                                                    <Link to={`peripheral-devices/show/${encodeURIComponent(item2['_id'])}`}>
-                                                        {item2['uid']}
-                                                    </Link>
-                                                    
-                                                </span>
-                                            )
-                                        })}</td>
+                                        <td>{item['vendor']}</td>
+                                        <td>{item['date']}</td>
+                                        <td>{item['status']}</td>
+                                        <td>
+                                            <Link to={`/gateways/show/${encodeURIComponent(item['_id'])}`}>
+                                                {item['gatewayId']}
+                                            </Link>
+                                        </td>
                                         <td>
                                             <span className="action-buttons">
                                                 <Link to={`show/${encodeURIComponent(item['_id'])}`}>
@@ -105,7 +96,7 @@ const mapStateToProps = state => {
         retrieved,
         loading,
         error
-    } = state.gateways.list;
+    } = state.peripherals.list;
     return {retrieved, loading, error};
 };
 

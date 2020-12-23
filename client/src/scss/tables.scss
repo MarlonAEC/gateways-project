@@ -1,0 +1,46 @@
+table{
+    width: 100%;
+    height: auto;
+    background-color: #f8f6ff;
+    border-radius: 10px;
+    //overflow: hidden;
+    box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.15);
+    -webkit-box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.15);
+    -o-box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.15);
+    -ms-box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.15);
+}
+
+.table-head-row{
+    background-color: #6c7ae0;
+}
+
+.column-gateway td{
+    color:#808080;
+}
+
+td a{
+    color: #6c7ae0;
+}
+td a:hover{
+    color:  black;
+    text-decoration: none;
+}
+
+.table-head{
+    box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.1);
+    -o-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.1);
+    -ms-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.1);
+}
+
+.column-gateway{
+    //display: flex;
+    width: 16.6%;
+    //flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+}
