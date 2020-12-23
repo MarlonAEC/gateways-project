@@ -50,7 +50,6 @@ class Create extends Component {
     }
 
     handleIpChange = (e) =>{
-        console.log(e);
         if(/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(e.target.value)){
             this.setState({
                 [e.target.id]: e.target.value,
@@ -95,7 +94,6 @@ class Create extends Component {
             && !this.state.errorStatus
             && !this.state.errorUnique){
                 let newGateway = {
-                    uid: this.state.uid,
                     name: this.state.name,
                     ipAddress: this.state.ipAddress,
                     serialNumber: this.state.serialNumber,
@@ -108,6 +106,12 @@ class Create extends Component {
     render() {
         return (
             <Container>
+                {this.props.error && (
+                    <div className="alert alert-danger">
+                        <span>Error: {this.props.error.error}<br/></span>
+                        <span>Description: {this.props.error.description}<br/></span>
+                    </div>
+                )}
                 {this.state.errorUnique && (
                     <div className="alert alert-danger">The UID must be unique</div>
                 )}

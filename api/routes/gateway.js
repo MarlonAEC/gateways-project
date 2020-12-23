@@ -185,16 +185,19 @@ router.post('/gateways', [
     });
 
     await Peripheral.insertMany(arrayOfPeripheralDevices).then(function(){
-        newGateway.save(async function(err){
-            if(err){
-                for(var i = 0;i < arrayOfPeripheralDevices.length;i++){
-                    await Peripheral.findOneAndRemove({_id: arrayOfPeripheralDevices[i]})
-                }
-                next(err);
+        newGateway.save().then(function(err){
+            res.status(201).json({message: "Gateway successfully added!", gateway: newGateway});
+        }).catch(async function(err){
+            for(var i = 0;i < arrayOfPeripheralDevices.length;i++){
+                await Peripheral.findOneAndRemove({_id: arrayOfPeripheralDevices[i]})
             }
-            res.status(201).json({message: "Gateway successfully added!", gateway: newGateway});        
+            err.status = 400;
+            next(err);
         })
-    }).catch(next)
+    }).catch((err)=>{
+        err.status = 400;
+        next(err)
+    })
 });
 
 router.post('/gateways/:id/peripheral-devices',function(req, res, next){
