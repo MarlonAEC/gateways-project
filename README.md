@@ -41,6 +41,72 @@ This repository is structured in a specific way
 ```
 The `api` folder holds all the source code of the NodeJs + Express + MongoDb application and there is  `README.md` file with the installation process of the API. The `client` folder holds all the source code from the React + Redux application and also there is a `README.md` file with the installation process for the `client`.
 
+## Installation
+
+### API server installation
+First clone the project
+```
+git clone https://github.com/MarlonAEC/gateways-project.git
+```
+
+then move to `api` folder and install dependencies for the `api` with your favorite package manager
+
+```
+cd api
+npm install
+```
+or
+```
+cd api
+yarn install
+```
+
+if required configure ports and database name in `config.js` folder:
+
+```
+module.exports={
+    ENV: process.env.NODE_ENV || 'development',
+    PORT: process.env.PORT || 9000,
+    BASE_URL: process.env.BASE_URL || 'http://localhost:9000',
+    MONGODB_URI: process.env.MONGODB_URI || 'mongodb://127.0.0.1/gateway_management'
+};
+```
+
+and then run the API server:
+
+```
+npm start
+```
+
+the server should be listening at [http://localhost:9000](http://localhost:9000) for run unit test use the command:
+
+```
+npm test
+```
+
+### Client installation
+
+For client installation open another `cmd` make shure that you are at the root directory of the project and then run:
+
+```
+cd client
+npm install
+```
+or
+
+```
+cd client
+yarn install
+```
+
+when it finish run the client with the command:
+
+```
+yarn start
+```
+
+the client should then be listennig at [http://localhost:3000](http://localhost:3000)
+
 ## Contact
 Marlon A. Espinosa Castañeiras
 - Email: marlonespinosa83@gmail.com
