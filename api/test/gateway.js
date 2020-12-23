@@ -114,7 +114,7 @@ describe('Gateways', () => {
                 .send(gateway)
                 .end((err, res) => {
                         expect(err).to.be.null;
-                        res.should.have.status(422);
+                        res.should.have.status(400);
                         res.body.should.be.a('object');
                         res.body.should.have.property('error').eql('ValidationError');
                         //res.body.should.have.property('description').eql("PDevices validation failed: status: `algo` is not a valid enum value for path `status`.");  
