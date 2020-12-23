@@ -87,6 +87,12 @@ router.get('/peripheral-devices',function(req, res, next){
     }).catch(next);
 })
 
+router.get('/peripheral-devices/:id',function(req, res, next){
+    Peripheral.findOne({_id: req.params.id}).then(function(gateways){
+        res.status(200).json(gateways);
+    }).catch(next);
+})
+
 router.post('/peripheral-devices',[
     check('gatewayId').notEmpty().withMessage('Please specify the gatewayId of gateway who owns this peripheral device'),
     check('uid').notEmpty().withMessage('This value should not be  blank!'),

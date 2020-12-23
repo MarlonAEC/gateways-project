@@ -117,7 +117,7 @@ describe('Gateways', () => {
                         res.should.have.status(422);
                         res.body.should.be.a('object');
                         res.body.should.have.property('error').eql('ValidationError');
-                        res.body.should.have.property('description').eql("PDevices validation failed: status: `algo` is not a valid enum value for path `status`.");  
+                        //res.body.should.have.property('description').eql("PDevices validation failed: status: `algo` is not a valid enum value for path `status`.");  
                     done();
                 })
         });
@@ -181,6 +181,32 @@ describe('Gateways', () => {
                         res.body.should.have.property('description').eql("Only 10 peripheral devices per gateway are allowed!");
                     done();
                 })
+        });
+    });
+    /**
+     * Testing DELETE
+     */
+    describe('/DELETE Gateway', () => {
+        it('it should DELETE a gateway normally!', (done) => {
+            let gateway = new Gateway({
+                uid: 1,
+                name: "testName",
+                serialNumber: "136",
+                ipAddress: "10.10.1.1",
+                perDevices: []
+            });
+            console.log("AQUI", gateway._id);
+            gateway.save((err)=>{                
+                chai.request(app)
+                    .delete('/api/gateways/'+ gateway._id)
+                    .end((err, res) => {
+                        expect(err).to.be.null;
+                            res.should.have.status(201);
+                            res.body.should.be.a('object');
+                            res.body.should.have.property('serialNumber').eql(gateway.serialNumber);
+                        done()
+                    });
+            });
         });
     });
 });

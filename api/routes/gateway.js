@@ -155,6 +155,7 @@ router.post('/gateways', [
     check('ipAddress').isIP().withMessage("Please enter a valid IP Address")
         .notEmpty().withMessage("This value should not be blank")
 ],async function(req, res, next){
+    console.log(req.body);
     const result = validationResult(req);
     const hasErrors = !result.isEmpty();
     if(hasErrors){
@@ -174,28 +175,26 @@ router.post('/gateways', [
         perDevices: []
     });
 
-    var arrayOfPeriferalDevices = [];
-    await req.body.perDevices.map(item => {
+    var errors = false;
+    var arrayOfPeripheralDevices = [];
+    req.body.perDevices.map(item => {
         newPeripheral = new Peripheral(item);
         newPeripheral.gatewayId = newGateway._id;
         newGateway.perDevices.push(newPeripheral._id);
-        arrayOfPeriferalDevices.push(newPeripheral._id);
-        newPeripheral.save(function(err){
-            if(err){
-                next(err);
-            }
-        })
+        arrayOfPeripheralDevices.push(newPeripheral);
     });
 
-    newGateway.save(async function(err){
-        if(err){
-            for(var i = 0;i < arrayOfPeriferalDevices.length;i++){
-                await Peripheral.findOneAndRemove({_id: arrayOfPeriferalDevices[i]})
+    await Peripheral.insertMany(arrayOfPeripheralDevices).then(function(){
+        newGateway.save(async function(err){
+            if(err){
+                for(var i = 0;i < arrayOfPeripheralDevices.length;i++){
+                    await Peripheral.findOneAndRemove({_id: arrayOfPeripheralDevices[i]})
+                }
+                next(err);
             }
-            next(err);
-        }
-        res.status(201).json({message: "Gateway successfully added!", gateway: newGateway});        
-    })
+            res.status(201).json({message: "Gateway successfully added!", gateway: newGateway});        
+        })
+    }).catch(next)
 });
 
 router.post('/gateways/:id/peripheral-devices',function(req, res, next){
@@ -245,17 +244,24 @@ router.post('/gateways/:id/peripheral-devices',function(req, res, next){
 //     }).catch(next);
 // });
 
-// router.delete('/gateways/:id', function(req, res, next){
-//     Gateway.findByIdAndDelete({_id:req.params.id}).then(function(gateway){
-//         if(!gateway){
-//             res.status(404).send(`Object ${req.params.id} Not Found`);
-//         }
-//         else{
-//             Peripheral.find({gatewayId: gateway._id})
-//             res.status(201).send(gateway);
-//         }
+router.delete('/gateways/:id', function(req, res, next){
+    Gateway.findByIdAndDelete({_id:req.params.id}).then( async function(gateway){
+        if(!gateway){
+            res.status(404).send(`Object ${req.params.id} Not Found`);
+        }
+        else{
+            await gateway.perDevices.map((item)=>{
+                Peripheral.remove(item, function(err){
+                    if(err){
+                        next(err);
+                    }
+                });
+            }) 
+            
+            res.status(201).send(gateway);
+        }
         
-//     }).catch(next)
-// });
+    }).catch(next)
+});
 
 module.exports = router;

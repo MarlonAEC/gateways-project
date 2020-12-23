@@ -9,6 +9,7 @@ var mongoose = require('mongoose');
 const swaggerUi = require('swagger-ui-express');
 const options = require('./swagger');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 
 //Set up default mongoose connection
@@ -26,6 +27,7 @@ const specs = swaggerJsdoc(options);
 
 var app = express();
 
+app.use(cors());
 app.use(bodyParser.json());
 app.use(logger('dev'));
 app.use(express.json());
