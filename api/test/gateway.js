@@ -114,10 +114,10 @@ describe('Gateways', () => {
                 .send(gateway)
                 .end((err, res) => {
                         expect(err).to.be.null;
+                        console.log(res.body);
                         res.should.have.status(400);
                         res.body.should.be.a('object');
-                        res.body.should.have.property('error').eql('ValidationError');
-                        //res.body.should.have.property('description').eql("PDevices validation failed: status: `algo` is not a valid enum value for path `status`.");  
+                        res.body.should.have.property('message').eql('PDevices validation failed: status: `algo` is not a valid enum value for path `status`.')
                     done();
                 })
         });
@@ -136,18 +136,19 @@ describe('Gateways', () => {
                 .post('/api/gateways')
                 .send(gateway)
                 .end((err, res) => {
+                        //console.log(res.body.errors);
                         expect(err).to.be.null;
                         res.should.have.status(400);
                         res.body.should.be.a('object');
-                        res.body.should.have.property('errors');
-                        res.body.errors.length.should.be.eql(1);
-                        expect(res.body.errors).to.be.an('array').that.deep.include(
+                        res.body.should.have.property('errors').to.have.deep.members([
                             {
-                                value: "10.10.1.a",
-                                msg: "Please enter a valid IP Address", 
-                                param: "ipAddress", 
-                                location: "body"
-                            });
+                                location: "body",
+                                msg:'Please enter a valid IP Address',
+                                param: "ipAddress",
+                                value: "10.10.1.a"
+                            }
+                            ]);;
+                        //res.body.errors.
                     done();
                 })
         });
@@ -195,7 +196,7 @@ describe('Gateways', () => {
                 ipAddress: "10.10.1.1",
                 perDevices: []
             });
-            console.log("AQUI", gateway._id);
+            //console.log("AQUI", gateway._id);
             gateway.save((err)=>{                
                 chai.request(app)
                     .delete('/api/gateways/'+ gateway._id)

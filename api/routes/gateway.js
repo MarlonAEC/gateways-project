@@ -155,7 +155,7 @@ router.post('/gateways', [
     check('ipAddress').isIP().withMessage("Please enter a valid IP Address")
         .notEmpty().withMessage("This value should not be blank")
 ],async function(req, res, next){
-    console.log(req.body);
+    //console.log(req.body);
     const result = validationResult(req);
     const hasErrors = !result.isEmpty();
     if(hasErrors){
