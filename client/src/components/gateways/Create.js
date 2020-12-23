@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import AddPeripheral from './AddPeripheral';
 import { create, reset } from '../../actions/gateways/create';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 import {
     Col,
@@ -15,7 +16,7 @@ import PropTypes from 'prop-types';
 
 class Create extends Component {
     static propTypes = {
-        retrieved: PropTypes.object,
+        created: PropTypes.object,
         loading: PropTypes.bool.isRequired,
         error: PropTypes.string,
         create: PropTypes.func.isRequired,
@@ -106,6 +107,9 @@ class Create extends Component {
     render() {
         return (
             <Container>
+                {this.state.created && (
+                    <Redirect to={`show/${encodeURIComponent(this.state.retrieved['_id'])}`}/>
+                )}
                 {this.props.error && (
                     <div className="alert alert-danger">
                         <span>Error: {this.props.error.error}<br/></span>
@@ -132,7 +136,7 @@ class Create extends Component {
                 </div>
                 <Form className="gateway-form" onSubmit={this.handleSubmit}>
                     <Form.Group as={Col} md={4}>
-                        <label className="input-group-text" htmlFor="serial-number" >
+                        <label className="input-group-text" htmlFor="serialNumber" >
                             Serial Number
                         </label>
                         <Form.Control type="text" id="serialNumber" onChange={this.handleChange} placeholder="Serial Number" /*value={} onChange={(e) => setName(e.target.value)}*/ required={true} />
@@ -164,12 +168,12 @@ class Create extends Component {
 
 const mapStateToProps = (state) =>{
     const{
-        retrieved,
+        created,
         error,
         loading
     } = state.gateways.create
 
-    return {retrieved, error, loading};
+    return {created, error, loading};
 }
 
 const mapDispatchToProps = (dispatch) =>({
