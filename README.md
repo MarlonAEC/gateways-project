@@ -61,27 +61,24 @@ cd api
 yarn install
 ```
 
-if required configure ports and database name in `config.js` folder:
+if required configure ports and database name in `config` folder in the differents enviroments json files :
 
 ```
-module.exports={
-    ENV: process.env.NODE_ENV || 'development',
-    PORT: process.env.PORT || 9000,
-    BASE_URL: process.env.BASE_URL || 'http://localhost:9000',
-    MONGODB_URI: process.env.MONGODB_URI || 'mongodb://127.0.0.1/gateway_management'
-};
+- dev.json
+- prod.json
+- test.json
 ```
 
 and then run the API server:
 
 ```
-npm start
+npm run start:dev
 ```
 
 the server should be listening at [http://localhost:9000](http://localhost:9000) for run unit test use the command:
 
 ```
-npm test
+npm run start:test
 ```
 
 ### Client installation
