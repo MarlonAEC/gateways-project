@@ -107,8 +107,13 @@ class Create extends Component {
     render() {
         return (
             <Container>
-                {this.state.created && (
-                    <Redirect to={`show/${encodeURIComponent(this.state.retrieved['_id'])}`}/>
+                {this.props.created && (
+                    <div className="alert alert-success">
+                        { this.props.created.message}
+                    </div>
+                )}
+                {this.props.created && (
+                    <Redirect to={`show/${encodeURIComponent(this.props.created.gateway['_id'])}`}/>
                 )}
                 {this.props.error && (
                     <div className="alert alert-danger">

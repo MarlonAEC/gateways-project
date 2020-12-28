@@ -96,11 +96,11 @@ class Show extends Component {
                 <Link to="/gateways/list" className="btn btn-primary">
                     Back to list
                 </Link>
-                {item && (
+                {/* {item && (
                 <Link to={`/turnos/edit/${encodeURIComponent(item['@id'])}`}>
                     <button className="btn btn-warning">Edit</button>
                 </Link>
-                )}
+                )} */}
                 <button onClick={this.del} className="btn btn-danger">
                     Delete
                 </button>
