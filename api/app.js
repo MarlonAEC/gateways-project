@@ -1,6 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
-const config = require('./config');
+const config = require('config');
 var swaggerJsdoc = require("swagger-jsdoc");
 var path = require('path');
 var cookieParser = require('cookie-parser');
@@ -11,11 +11,15 @@ const options = require('./swagger');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-
+//Getting configurations from enviroment
+const dbConfig = config.get('db');
+const PORT = config.get('app.port');
 //Set up default mongoose connection
-mongoose.connect(config.MONGODB_URI, { useNewUrlParser: true });
+
+mongoose.connect(dbConfig, { useNewUrlParser: true });
  //Get the default connection
 var db = mongoose.connection;
+console.log(`Connected to database: ${dbConfig}` );
 //Bind connection to error event (to get notification of connection errors)
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
