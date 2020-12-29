@@ -8,7 +8,7 @@ export default class Home extends Component {
         return (
             <div className="container">
                 <header className='class-header'>
-                    <h1><span>Gateway management system inspired by <a href="/#">MusalaSoft</a></span></h1>
+                    <h1><span>Gateway management system inspired by <a href="http://musala.com/">MusalaSoft</a></span></h1>
                 </header>
                 <Container>
                     <h2>
