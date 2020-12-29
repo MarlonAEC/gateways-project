@@ -47,19 +47,19 @@ class AddPeripheral extends Component{
                         <Row>
                             <InputGroup as={Col} md={12} sm={12}>
                                 <InputGroup.Prepend className="input-group-text" htmlFor="uid" >
-                                    UID
+                                    UID <span className="asterisk-required">*</span>
                                 </InputGroup.Prepend>
                                 <Form.Control type="number" min="0" id="uid" placeholder="The UID of the Peripheral device" onChange={this.handleChange} required={true} />
                             </InputGroup>
                             <InputGroup as={Col} md={12} sm={12}>
                                 <InputGroup.Prepend className="input-group-text" htmlFor="vendor" >
-                                    Vendor
+                                    Vendor <span className="asterisk-required">*</span>
                                 </InputGroup.Prepend>
                                 <Form.Control type="text" id="vendor" placeholder="The vendor of the peripheral device" onChange={this.handleChange} required={true} />
                             </InputGroup>
                             <InputGroup as={Col} md={12} sm={12}>
                                 <InputGroup.Prepend className="input-group-text" htmlFor="status" >
-                                    Status
+                                    Status <span className="asterisk-required">*</span>
                                 </InputGroup.Prepend>
                                 <Form.Control as="select" id="status" defaultValue="status" placeholder="Statis of the periferal device" onChange={this.handleChange} required={true}>
                                     <option>online</option>

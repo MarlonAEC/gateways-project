@@ -4,7 +4,7 @@ import { list, reset } from '../../actions/gateways/list';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrash, faEye } from '@fortawesome/free-solid-svg-icons'
+import { faTrash, faEye, faPlus } from '@fortawesome/free-solid-svg-icons'
 
 class List extends Component {
     static propTypes = {
@@ -17,15 +17,7 @@ class List extends Component {
     componentDidMount(){
         this.props.list();
     }
-
-    // UNSAFE_componentWillReceiveProps(nextProps) {
-    //     console.log(nextProps);
-    //     // if (this.props.match.params.page !== nextProps.match.params.page)
-    //     //   nextProps.list();
-    //   }
-    
-    
-
+ 
     render() {
         return (
             <div className="container">
@@ -42,8 +34,11 @@ class List extends Component {
                 )}
 
                 <p>
-                    <Link to="create" className="btn btn-primary">
-                        Create
+                    <Link to="create">
+                        <div className="btn btn-primary">
+                            <FontAwesomeIcon icon={faPlus}/>
+                            <span className="p-2">Create</span>
+                        </div>
                     </Link>
                 </p>
 
@@ -69,7 +64,7 @@ class List extends Component {
                                         </td>
                                         <td>{item['name']}</td>
                                         <td>{item['ipAddress']}</td>
-                                        <td>{item['perDevices'].map(item2=>{
+                                        <td>{item['perDevices'].length === 0 ? (<span>-</span>) : item['perDevices'].map(item2=>{
                                             return (
                                                 <span key={item2['_id']}>
                                                     <Link to={`peripheral-devices/show/${encodeURIComponent(item2['_id'])}`}>

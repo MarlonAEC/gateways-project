@@ -147,13 +147,13 @@ class Create extends Component {
                                 <Form className="gateway-form" onSubmit={this.handleSubmit}>
                                     <InputGroup as={Col} md={12} sm={12}>
                                         <InputGroup.Prepend className="input-group-text" htmlFor="serialNumber" >
-                                            Serial Number
+                                            Serial Number <span className="asterisk-required">*</span>
                                         </InputGroup.Prepend>
                                         <Form.Control type="text" id="serialNumber" onChange={this.handleChange} placeholder="Serial Number" /*value={} onChange={(e) => setName(e.target.value)}*/ required={true} />
                                     </InputGroup>
                                     <InputGroup as={Col} md={12} sm={12}>
                                         <InputGroup.Prepend className="input-group-text" htmlFor="name" >
-                                            Name
+                                            Name <span className="asterisk-required">*</span>
                                         </InputGroup.Prepend>
                                         <Form.Control type="text" id="name" placeholder="Human readable name" onChange={this.handleChange}/*value={} onChange={(e) => setName(e.target.value)}*/ required={true} />
                                     </InputGroup>
@@ -162,7 +162,7 @@ class Create extends Component {
                                             <div className="alert alert-danger">Incorrect IP value</div>
                                         }
                                         <InputGroup.Prepend className="input-group-text" htmlFor="name" >
-                                            Ipv4 Address
+                                            Ipv4 Address <span className="asterisk-required">*</span>
                                         </InputGroup.Prepend>
                                         <Form.Control type="text" id="ipAddress" onChange={this.handleIpChange} className={this.state.errorIp ? "input-error" : ""} placeholder="IP Address of the gateway" /*value={} onChange={(e) => setName(e.target.value)}*/ required={true} />
                                     </InputGroup>
