@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import { list, reset } from '../../actions/gateways/list';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrash, faEye } from '@fortawesome/free-solid-svg-icons'
 
 class List extends Component {
     static propTypes = {
@@ -80,12 +82,12 @@ class List extends Component {
                                         <td>
                                             <span className="action-buttons">
                                                 <Link to={`show/${encodeURIComponent(item['_id'])}`}>
-                                                    SHOW
+                                                    <FontAwesomeIcon icon={faEye}/>
                                                 </Link>
                                             </span>
                                             <span className="action-buttons">
                                                 <Link to={`delete/${encodeURIComponent(item['_id'])}`}>
-                                                    DELETE
+                                                    <FontAwesomeIcon icon={faTrash}/>
                                                 </Link>
                                             </span>
                                         </td>

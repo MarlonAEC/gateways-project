@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import { list, reset } from '../../actions/peripheral/list';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrash, faEye } from '@fortawesome/free-solid-svg-icons'
 
 class List extends Component {
     static propTypes = {
@@ -64,19 +66,19 @@ class List extends Component {
                                         <td>{item['date']}</td>
                                         <td>{item['status']}</td>
                                         <td>
-                                            <Link to={`/gateways/show/${encodeURIComponent(item['_id'])}`}>
+                                            <Link to={`/gateways/show/${encodeURIComponent(item['gatewayId'])}`}>
                                                 {item['gatewayId']}
                                             </Link>
                                         </td>
                                         <td>
-                                            <span className="action-buttons">
+                                        <span className="action-buttons">
                                                 <Link to={`show/${encodeURIComponent(item['_id'])}`}>
-                                                    SHOW
+                                                    <FontAwesomeIcon icon={faEye}/>
                                                 </Link>
                                             </span>
                                             <span className="action-buttons">
                                                 <Link to={`delete/${encodeURIComponent(item['_id'])}`}>
-                                                    DELETE
+                                                    <FontAwesomeIcon icon={faTrash}/>
                                                 </Link>
                                             </span>
                                         </td>
