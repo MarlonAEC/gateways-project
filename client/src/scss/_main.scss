@@ -22,7 +22,7 @@ body {
 	text-align: center;
 }
 
-.class-header a {
+.class-header a , p a{
 	outline: none;
 	color: #fff;
 	text-decoration: none;
@@ -43,7 +43,8 @@ body {
 }
 
 .class-header a:hover,
-.class-header a:focus {
+.class-header a:focus,
+p a:hover{
     opacity: 1;
     color: #fff;
     text-decoration: none;

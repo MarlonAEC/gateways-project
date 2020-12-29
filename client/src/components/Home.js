@@ -15,6 +15,11 @@ export default class Home extends Component {
                         Description
                     </h2>
                     <p>This a simple frontend for interact with gateways API!</p>
+                    <h2>
+                        Contact
+                    </h2>
+                    <p>Developed by Marlon A. Espinosa Castañeiras: <span><a href="mailto:marlonespinosa83@gmail.com">marlonespinosa83@gmail.com</a></span></p>
+                    <p><a href="https://github.com/MarlonAEC">Github</a></p>
                 </Container>
             </div>
         )
