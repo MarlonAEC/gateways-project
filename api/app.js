@@ -28,8 +28,13 @@ var gatewaysRouter = require('./routes/gateway');
 var peripheralRouter = require('./routes/peripheral');
 
 const specs = swaggerJsdoc(options);
+const createFixtures = require('./fixtures/generateFixtures');
 
 var app = express();
+if(app.get('env') === 'dev'){
+  createFixtures();
+  console.log("Fixtures created!");
+}
 
 app.use(cors());
 app.use(bodyParser.json());
