@@ -27,3 +27,29 @@
     justify-content: center;
     align-items: center;
 }
+
+.form-row-create{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gateway-form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/**
+Add peripheral form
+*/
+.input-group{
+    margin: 5px;
+    padding: 3px;
+}
+.input-group-prepend{
+    width: 110px;
+}
+.input-group-text{
+    padding: 0.375rem 0.4rem !important;
+}

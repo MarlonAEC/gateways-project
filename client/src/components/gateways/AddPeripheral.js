@@ -1,7 +1,9 @@
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { Component } from 'react';
 
 import {
-    Form, Col, Row, Button
+    Form, Col, Row, Button, InputGroup, Card
 } from 'react-bootstrap'
 
 
@@ -34,38 +36,44 @@ class AddPeripheral extends Component{
     render(){
         return (
             <Form className="peripherals-form" onSubmit={this.handleSubmit}>
-                <h3 className="class-header text-form">Add a peripherial device</h3>
-                {this.state.errorStatus && (
-                    <div className="alert alert-danger">The status is incorrect please check</div>
-                )}
-                <Row>
-                    <Form.Group as={Col} md={4}>
-                        <label className="input-group-text" htmlFor="uid" >
-                            UID
-                        </label>
-                        <Form.Control type="number" min="0" id="uid" placeholder="The UID of the Peripheral device" onChange={this.handleChange} required={true} />
-                    </Form.Group>
-                    <Form.Group as={Col} md={4}>
-                        <label className="input-group-text" htmlFor="vendor" >
-                            Vendor
-                        </label>
-                        <Form.Control type="text" id="vendor" placeholder="The vendor of the peripheral device" onChange={this.handleChange} required={true} />
-                    </Form.Group>
-                    <Form.Group as={Col} md={4}>
-                        <label className="input-group-text" htmlFor="status" >
-                            Status
-                        </label>
-                        <Form.Control as="select" id="status" defaultValue="status" placeholder="Statis of the periferal device" onChange={this.handleChange} required={true}>
-                            <option>online</option>
-                            <option>offline</option>
-                        </Form.Control>
-                    </Form.Group>
-                </Row>
-                <Row className="container button-container">
-                    <Button className="button-add" type="submit">
-                        Add
-                    </Button>
-                </Row>
+                <Card>
+                    <Card.Header>
+                        <h4 className="class-header text-form">Peripherial devices</h4>
+                    </Card.Header>
+                    <Card.Body>
+                        {this.state.errorStatus && (
+                            <div className="alert alert-danger">The status is incorrect please check</div>
+                        )}
+                        <Row>
+                            <InputGroup as={Col} md={12} sm={12}>
+                                <InputGroup.Prepend className="input-group-text" htmlFor="uid" >
+                                    UID
+                                </InputGroup.Prepend>
+                                <Form.Control type="number" min="0" id="uid" placeholder="The UID of the Peripheral device" onChange={this.handleChange} required={true} />
+                            </InputGroup>
+                            <InputGroup as={Col} md={12} sm={12}>
+                                <InputGroup.Prepend className="input-group-text" htmlFor="vendor" >
+                                    Vendor
+                                </InputGroup.Prepend>
+                                <Form.Control type="text" id="vendor" placeholder="The vendor of the peripheral device" onChange={this.handleChange} required={true} />
+                            </InputGroup>
+                            <InputGroup as={Col} md={12} sm={12}>
+                                <InputGroup.Prepend className="input-group-text" htmlFor="status" >
+                                    Status
+                                </InputGroup.Prepend>
+                                <Form.Control as="select" id="status" defaultValue="status" placeholder="Statis of the periferal device" onChange={this.handleChange} required={true}>
+                                    <option>online</option>
+                                    <option>offline</option>
+                                </Form.Control>
+                            </InputGroup>
+                        </Row>
+                        <Row className="container button-container">
+                            <Button className="btn btn-secondary" type="submit">
+                                <FontAwesomeIcon icon={faPlus}/>
+                            </Button>
+                        </Row>
+                    </Card.Body>
+                </Card>
             </Form>
         )
     }

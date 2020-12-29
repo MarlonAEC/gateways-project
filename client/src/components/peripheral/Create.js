@@ -96,6 +96,11 @@ class Create extends Component {
                 {this.props.errorStatus && (
                     <div className="alert alert-danger">The field status should be</div>
                 )}
+                <header className="class-header">
+                    <h1>
+                        Lets create more Peripheral devices!
+                    </h1>
+                </header>
                 <Form className="gateway-form" onSubmit={this.handleSubmit}>
                     <Form.Group as={Col} md={3}>
                         <label className="input-group-text" htmlFor="uid" >

@@ -4,7 +4,7 @@ import { list, reset } from '../../actions/peripheral/list';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrash, faEye } from '@fortawesome/free-solid-svg-icons'
+import { faTrash, faEye, faPlus } from '@fortawesome/free-solid-svg-icons'
 
 class List extends Component {
     static propTypes = {
@@ -34,8 +34,11 @@ class List extends Component {
                 )}
 
                 <p>
-                    <Link to="create" className="btn btn-primary">
-                        Create
+                    <Link to="create" >
+                        <div className="btn btn-primary">
+                            <FontAwesomeIcon icon={faPlus}/>
+                            <span className="p-2">Create</span>
+                        </div>
                     </Link>
                 </p>
 

@@ -8,7 +8,10 @@ import {
     Col,
     Form,
     Container,
-    Button
+    Button,
+    Card,
+    Row,
+    InputGroup
 } from 'react-bootstrap';
 import GatewayPeripheralDevice from './GatewayPeripheralDevices';
 import PropTypes from 'prop-types';
@@ -107,64 +110,70 @@ class Create extends Component {
     render() {
         return (
             <Container>
-                {this.props.created && (
-                    <div className="alert alert-success">
-                        { this.props.created.message}
-                    </div>
-                )}
-                {this.props.created && (
-                    <Redirect to={`show/${encodeURIComponent(this.props.created.gateway['_id'])}`}/>
-                )}
-                {this.props.error && (
-                    <div className="alert alert-danger">
-                        <span>Error: {this.props.error.error}<br/></span>
-                        <span>Description: {this.props.error.description}<br/></span>
-                    </div>
-                )}
-                {this.state.errorUnique && (
-                    <div className="alert alert-danger">The UID must be unique</div>
-                )}
-                {this.state.errorSize && (
-                    <div className="alert alert-danger">Only 10 peripheral devices allowed per gateway</div>
-                )}
-                {this.state.errorStatus && (
-                    <div className="alert alert-danger">The field status should be</div>
-                )}
-                <div className="peripheral-container">
-                    <AddPeripheral addPeripheral={this.addPeripheral}/>
-                    <div className="container" md={6}>
-                        <label className="input-group-text" htmlFor="name" >
-                            Peripheral Devices
-                        </label>
-                        <GatewayPeripheralDevice peripherals={this.state.peripherals} deletePeripheral={this.deletePeripheral}/>
-                    </div>
-                </div>
-                <Form className="gateway-form" onSubmit={this.handleSubmit}>
-                    <Form.Group as={Col} md={4}>
-                        <label className="input-group-text" htmlFor="serialNumber" >
-                            Serial Number
-                        </label>
-                        <Form.Control type="text" id="serialNumber" onChange={this.handleChange} placeholder="Serial Number" /*value={} onChange={(e) => setName(e.target.value)}*/ required={true} />
-                    </Form.Group>
-                    <Form.Group as={Col} md={4}>
-                        <label className="input-group-text" htmlFor="name" >
-                            Name
-                        </label>
-                        <Form.Control type="text" id="name" placeholder="Human readable name" onChange={this.handleChange}/*value={} onChange={(e) => setName(e.target.value)}*/ required={true} />
-                    </Form.Group>
-                    <Form.Group as={Col} md={4}>
-                        {this.state.errorIp && 
-                            <div className="alert alert-danger">Incorrect IP value</div>
-                        }
-                        <label className="input-group-text" htmlFor="name" >
-                            Ipv4 Address
-                        </label>
-                        <Form.Control type="text" id="ipAddress" onChange={this.handleIpChange} className={this.state.errorIp ? "input-error" : ""} placeholder="IP Address of the gateway" /*value={} onChange={(e) => setName(e.target.value)}*/ required={true} />
-                    </Form.Group>
-                    <Button className="button-add" type="submit">
-                        Submit
-                    </Button>
-                </Form>
+                <Row className="form-row-create">
+                    <Col md={9}>
+                        <Card>
+                            <Card.Body>
+                                {this.props.created && (
+                                    <div className="alert alert-success">
+                                        { this.props.created.message}
+                                    </div>
+                                )}
+                                {this.props.created && (
+                                    <Redirect to={`show/${encodeURIComponent(this.props.created.gateway['_id'])}`}/>
+                                )}
+                                {this.props.error && (
+                                    <div className="alert alert-danger">
+                                        <span>Error: {this.props.error.error}<br/></span>
+                                        <span>Description: {this.props.error.description}<br/></span>
+                                    </div>
+                                )}
+                                {this.state.errorUnique && (
+                                    <div className="alert alert-danger">The UID must be unique</div>
+                                )}
+                                {this.state.errorSize && (
+                                    <div className="alert alert-danger">Only 10 peripheral devices allowed per gateway</div>
+                                )}
+                                {this.state.errorStatus && (
+                                    <div className="alert alert-danger">The field status should be "online" or "offline"</div>
+                                )}
+                                <div className="peripheral-container">
+                                    <AddPeripheral addPeripheral={this.addPeripheral}/>
+                                    <label className="input-group-text" htmlFor="name" >
+                                        Peripheral Devices added
+                                    </label>
+                                    <GatewayPeripheralDevice peripherals={this.state.peripherals} deletePeripheral={this.deletePeripheral}/>
+                                </div>
+                                <Form className="gateway-form" onSubmit={this.handleSubmit}>
+                                    <InputGroup as={Col} md={12} sm={12}>
+                                        <InputGroup.Prepend className="input-group-text" htmlFor="serialNumber" >
+                                            Serial Number
+                                        </InputGroup.Prepend>
+                                        <Form.Control type="text" id="serialNumber" onChange={this.handleChange} placeholder="Serial Number" /*value={} onChange={(e) => setName(e.target.value)}*/ required={true} />
+                                    </InputGroup>
+                                    <InputGroup as={Col} md={12} sm={12}>
+                                        <InputGroup.Prepend className="input-group-text" htmlFor="name" >
+                                            Name
+                                        </InputGroup.Prepend>
+                                        <Form.Control type="text" id="name" placeholder="Human readable name" onChange={this.handleChange}/*value={} onChange={(e) => setName(e.target.value)}*/ required={true} />
+                                    </InputGroup>
+                                    <InputGroup as={Col} md={12} sm={12}>
+                                        {this.state.errorIp && 
+                                            <div className="alert alert-danger">Incorrect IP value</div>
+                                        }
+                                        <InputGroup.Prepend className="input-group-text" htmlFor="name" >
+                                            Ipv4 Address
+                                        </InputGroup.Prepend>
+                                        <Form.Control type="text" id="ipAddress" onChange={this.handleIpChange} className={this.state.errorIp ? "input-error" : ""} placeholder="IP Address of the gateway" /*value={} onChange={(e) => setName(e.target.value)}*/ required={true} />
+                                    </InputGroup>
+                                    <Button className="button-add" type="submit">
+                                        Create
+                                    </Button>
+                                </Form>
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                </Row>
             </Container>
         )
     }
